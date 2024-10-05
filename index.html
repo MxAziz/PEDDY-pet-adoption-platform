@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PET Adoption</title>
+    <!-- daisy ui cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    hi
+    <header class="w-11/12 mx-auto">
+        <nav class="flex justify-between py-7">
+            <div class="flex gap-2 items-center">
+                <img class="size-9" src="./assets/logo.webp" alt="logo">
+                <h3 class="text-3xl font-bold">peddy</h3>
+            </div>
+            <div class="items-center space-x-3 hidden md:block">
+                <button class="btn ">Home</button>
+                <button class="btn ">Shop</button>
+                <button class="btn ">Contact</button>
+            </div>
+            <div>
+                <img class="size-11  border-2 rounded-full p-2" src="https://img.icons8.com/?size=160&id=111473&format=png" alt="">
+            </div>
+        </nav>
+    </header>
+
+    <main class="w-11/12 mx-auto">
+        <!-- banner section starts here -->
+         <section>
+            <!-- text content container -->
+            <div class="text-center md:w-2/4 md:mx-auto space-y-6 m-7 md:m-10">
+                <h4 class="text-xl font-bold text-[#5f5f5f]">Bringing Families Together ❤️‍🔥</h4>
+                <h1 class="text-5xl font-bold">Your Path to Adoption Starts Here</h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.</p>
+                <button class="btn bg-[#0E7A81] hover:bg-[#1b6f75] text-white">View More</button>
+
+            </div>
+            <!-- img container -->
+            <div class="">
+                <img class="mx-auto" src="./assets/pet.webp" alt="">
+            </div>
+         </section>
+        <!-- banner section ends here -->
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <!-- scripts -->
+     <script src="./scripts/main.js"></script>
   </body>
 </html>
