@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PET Adoption</title>
+    <title>Peddy || Home</title>
+    <link rel="shortcut icon" href="./assets/logo.webp" type="image/x-icon">
     <!-- daisy ui cdn -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.js"></script>
   </head>
   <body>
     <header class="w-11/12 mx-auto">
         <nav class="flex justify-between py-7">
             <div class="flex gap-2 items-center">
                 <img class="size-9" src="./assets/logo.webp" alt="logo">
-                <h3 class="text-3xl font-bold">peddy</h3>
+                <h3 class="text-4xl font-bold">Peddy</h3>
             </div>
             <div class="items-center space-x-3 hidden md:block">
                 <button class="btn ">Home</button>
@@ -30,10 +32,10 @@
         <!-- banner section starts here -->
          <section>
             <!-- text content container -->
-            <div class="text-center md:w-2/4 md:mx-auto space-y-6 m-7 md:m-10">
+            <div class="text-center md:w-2/4 md:mx-auto space-y-6 my-7 md:my-10">
                 <h4 class="text-xl font-bold text-[#5f5f5f]">Bringing Families Together ❤️‍🔥</h4>
-                <h1 class="text-5xl font-bold">Your Path to Adoption Starts Here</h1>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.</p>
+                <h1 class="text-5xl font-bold ">Your Path to Adoption Starts Here</h1>
+                <p class="text-[#131313]">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.</p>
                 <button class="btn bg-[#0E7A81] hover:bg-[#1b6f75] text-white">View More</button>
 
             </div>
@@ -44,10 +46,64 @@
          </section>
         <!-- banner section ends here -->
 
+        <!-- adopt section starts here -->
+         <section>
+            <!-- adopt text content -->
+             <div class="text-center mt-10 md:w-2/4 md:mx-auto space-y-6 mb-12">
+                <h3 class="text-4xl font-bold">Adopt  Your  Best Friend</h3>
+                <p class="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+             </div>
+             <!-- adopt pet categories -->
+              <div class=""></div>
+         </section>
+        <!-- adopt section ends here -->
+
     </main>
 
-    <footer>
+    <footer class="bg-[#131313] py-24">
+        <section class="md:w-11/12 md:mx-auto md:flex md:justify-between ml-12 ">
+            <!-- peddy -->
+            <div class="text-white">
+                <div class="flex gap-2 items-center mb-6">
+                    <img class="size-9" src="./assets/logo.webp" alt="logo">
+                    <h3 class="text-4xl font-bold">Peddy</h3>
+                </div>
+                <!-- location -->
+                 <div class="text-[#FFFFFFE6]">
+                    <p>Location: av. Washington 165, NY CA 54003 <br>
+                    Phone: +31 85 964 4725 <br>
+                    Email: info@yourdomain.com <br>
+                    Openings hours: 9.00 AM - 5.00 PM</p>
+                 </div>
+                 <!-- link icon -->
+                  <div class="flex gap-3 size-10 mt-4">
+                    <img src="https://img.icons8.com/?size=96&id=118497&format=png" >
+                    <img style=" filter : invert( 100%)" src="https://img.icons8.com/?size=64&id=jlpBF1fJe9fs&format=png">
+                    <img src="https://img.icons8.com/?size=96&id=19318&format=png" >
+                    <img src="https://img.icons8.com/?size=96&id=Xy10Jcu1L2Su&format=png">
+                  </div>
+            </div>
+            <!-- useful link -->
+            <div class="text-white mt-10 md:mt-0">
+                <h4 class="text-lg font-bold mb-7">Useful Links</h4>
+                <div class="flex flex-col text-[#FFFFFFE6] space-y-2">
+                    <a href="#">Home</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Animals</a>
+                    <a href="#">Foundation</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <!-- drop a message -->
+            <div class="text-white mt-10 md:mt-0">
+                <h4 class="text-lg font-bold mb-7">Drop a Message</h4>
+                <!-- ----- -->
+                <input class="bg-[#FFFFFF0D] p-4 rounded-xl " type="email" name="" placeholder="Enter your email" id=""> <br>
+                <!-- ----- -->
+                 <button class="btn btn-wide w-[212px] mt-4 bg-[#0E7A81] hover:bg-[#1a6a70] border-none text-white">Subscribe</button>
+            </div>
 
+        </section>
     </footer>
 
     <!-- scripts -->
