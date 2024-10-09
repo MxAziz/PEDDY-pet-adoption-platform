@@ -19,21 +19,30 @@ const loadAllPets = () => {
 // (1)display
 const displayAllPets = (pets) => {
     const petsContainer = document.getElementById('pets');
-    pets.forEach(item  => {
+    pets.forEach(item => {
+        const {breed, date_of_birth, gender, price } = item;
         const card = document.createElement('div')
-        card.classList = "card card-compact ";
+        card.classList = "card card-compact border-2 p-5";
         card.innerHTML = `
-        <figure>
+        <figure class="h-[150px]">
             <img
             src=${item.image}
-            alt="Shoes" />
+            class="h-full w-full object-cover" />
         </figure>
-        <div class="card-body">
-            <h2 class="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+        <div class="px-0 py-2">
+            <h2 class="card-title font-bold">${item.pet_name}</h2>
+            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=3795dYcdKYUp&format=png"> Breed: ${breed}</p>
+            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=20095&format=png"> Birth: ${date_of_birth ? date_of_birth : "Not Available"}</p>
+            <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> Gender: ${gender}</p>
+            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=85782&format=png"> Price: ${price}</p>
+            <p class="divider mt-1"></p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <button class="btn bg-white border border-[#0E7A81]"><img class="size-5" src="https://img.icons8.com/?size=48&id=82788&format=png"></button>
+                <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Adopt</button>
+                <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Details</button>
             </div>
+
         </div>
         `
         petsContainer.append(card);
@@ -45,9 +54,9 @@ const displayPetCategories = (categories) => {
     const petBtnContainer = document.getElementById('categories')
     categories.forEach(item  => {
         const button = document.createElement('button');
-        button.classList = "btn btn-lg space-x-2 font-bold border-2 bg-white ";
+        button.classList = "btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white ";
         button.innerHTML = `
-            <img src=${item.category_icon}>
+            <img class="size-6 md:size-7" src=${item.category_icon}>
             <p>${item.category}</p>
 
         `
