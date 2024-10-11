@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Peddy - Pet Adoption Platform
 
 Peddy is a convenient and user-friendly platform designed to help people find new homes for their pets. Whether you are looking to adopt or rehome a pet, Peddy makes the process seamless and efficient.
@@ -20,4 +21,7 @@ Peddy is a convenient and user-friendly platform designed to help people find ne
 
 ## Live Demo
 
-Check out the live version of the Peddy platform: [Deployed Peddy Project](https://your-live-project-link.com)
+Check out the live version of the Peddy platform: [Deployed Peddy Project]()
+=======
+this is readme.md file
+>>>>>>> f0604ffaf5e9c7dce50d6ba7457f57cf66dabd21
