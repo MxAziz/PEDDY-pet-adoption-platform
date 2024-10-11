@@ -22,11 +22,10 @@ const displayAllPets = (pets) => {
     if (pets.length === 0) {
         petsContainer.classList.remove('grid');
         petsContainer.innerHTML = `
-        <div class="flex flex-col gap-5 justify-center items-center text-center bg-[#13131308] p-20 rounded-2xl">
+        <div class="flex flex-col gap-5 justify-center items-center text-center bg-[#13131308] p-16 rounded-2xl">
             <img src="./assets/error.webp">
             <h3 class="text-3xl font-bold">No Information Available</h3>
-            <p class="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at <br>
-            its layout. The point of using Lorem Ipsum is that it has a.</p>
+            <p class="">"Peddy" is a pet adoption platform where there are currently no available birds for adoption in this <br> category. However, new information about adoptable birds will be added soon. Stay tuned for updates!</p>
         </div>
         `;
         return;
@@ -64,25 +63,46 @@ const displayAllPets = (pets) => {
     });
 }
 
+// remove all active btn class
+const removeActiveClass = () => {
+    const buttons = document.getElementsByClassName("category-btn");
+    console.log(buttons)
+    for (const btn of buttons) {
+        btn.classList.remove("active");
+    }
+}
+
 // (4) load pets by category
 const loadCategoryPets = (id) => {
     // alert(id);
     // console.log(id);
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
         .then(res => res.json())
-        .then(data => displayAllPets(data.data))
-        .catch(error => console.log(error));
+        // .then(data => displayAllPets(data.data))
+        .then(data => {
+            // remove all active class
+            removeActiveClass();
+            // active class added by id
+            const activeBtn = document.getElementById(`btn-${id}`);
+            // console.log(activeBtn);
+            activeBtn.classList.add("active")
 
+            displayAllPets(data.data)
+        })
+        .catch(error => console.log(error));
 }
+
 
 // (3)display
 const displayPetCategories = (categories) => {
     const petBtnContainer = document.getElementById('categories')
     categories.forEach(item => {
+        // console.log(item.category)
+
         const buttonContainer = document.createElement('div');
         buttonContainer.innerHTML = `
 
-        <button onclick="loadCategoryPets('${item.category}')" class="btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white w-full">
+        <button onclick="loadCategoryPets('${item.category}')" id="btn-${item.category}" class="category-btn btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white w-full">
         <img class="size-6 md:size-7" src=${item.category_icon}>
         <p>${item.category}</p>
         </button>
