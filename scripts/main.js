@@ -11,8 +11,22 @@ const loadPetCategories = () => {
 const loadAllPets = () => {
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
         .then(res => res.json())
+
         .then(data => displayAllPets(data.pets))
         .catch(error => console.log(error));
+        // .then(data => {
+        //     const loader = document.getElementById('loader');
+        //     loader.classList.remove('hidden');
+
+        //     setTimeout(() => {
+        //         loader.classList.add('hidden');
+        //         displayAllPets(data.pets);
+        //     }, 2000);
+        // } )
+        // .catch(error => {
+        //     console.log(error)
+        //     loader.classList.add('hidden');
+        // });
 }
 
 // (1)display
@@ -34,6 +48,8 @@ const displayAllPets = (pets) => {
     }
 
     pets.forEach(item => {
+        console.log(item);
+
         const {breed, date_of_birth, gender, price } = item;
         const card = document.createElement('div')
         card.classList = "card card-compact border-2 p-5";
@@ -45,16 +61,17 @@ const displayAllPets = (pets) => {
         </figure>
         <div class="px-0 py-2">
             <h2 class="card-title font-bold">${item.pet_name}</h2>
-            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=3795dYcdKYUp&format=png"> Breed: ${breed}</p>
+            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=3795dYcdKYUp&format=png"> Breed: ${breed ? breed : "Not Available"}</p>
             <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=20095&format=png"> Birth: ${date_of_birth ? date_of_birth : "Not Available"}</p>
-            <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> Gender: ${gender}</p>
-            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=85782&format=png"> Price: ${price}</p>
+            <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> Gender: ${gender ? gender : "Not Available"}</p>
+            <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=85782&format=png"> Price: ${price ? price : "Not Available"}</p>
             <p class="divider mt-1"></p>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <button class="btn bg-white border border-[#0E7A81]"><img class="size-5" src="https://img.icons8.com/?size=48&id=82788&format=png"></button>
                 <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Adopt</button>
-                <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Details</button>
+
+                <button onclick="loadDetails(${item.petId})" class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Details</button>
             </div>
 
         </div>
@@ -62,6 +79,40 @@ const displayAllPets = (pets) => {
         petsContainer.append(card);
     });
 }
+
+const loadDetails = (id) => {
+    // console.log(id)
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.petData)
+            const { breed, date_of_birth, gender, image, pet_details, price, pet_name } = data.petData;
+            const modal = document.getElementById('modal-container');
+            modal.innerHTML = `
+
+
+            `
+            modal.showModal();
+        })
+        .catch(error => console.log(error));
+
+}
+
+
+// const displayDetails = (petsData) => {
+//     const { breed, date_of_birth, gender, image, pet_details, price, pet_name } = petsData;
+//     console.log(pet_name)
+//     const modal = document.getElementById('modal-container');
+
+// }
+
+
+
+
+
+
+
+
 
 // remove all active btn class
 const removeActiveClass = () => {
@@ -74,17 +125,14 @@ const removeActiveClass = () => {
 
 // (4) load pets by category
 const loadCategoryPets = (id) => {
-    // alert(id);
     // console.log(id);
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
         .then(res => res.json())
-        // .then(data => displayAllPets(data.data))
         .then(data => {
             // remove all active class
             removeActiveClass();
             // active class added by id
             const activeBtn = document.getElementById(`btn-${id}`);
-            // console.log(activeBtn);
             activeBtn.classList.add("active")
 
             displayAllPets(data.data)
@@ -97,30 +145,37 @@ const loadCategoryPets = (id) => {
 const displayPetCategories = (categories) => {
     const petBtnContainer = document.getElementById('categories')
     categories.forEach(item => {
-        // console.log(item.category)
-
         const buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = `
 
+        buttonContainer.innerHTML = `
         <button onclick="loadCategoryPets('${item.category}')" id="btn-${item.category}" class="category-btn btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white w-full">
         <img class="size-6 md:size-7" src=${item.category_icon}>
         <p>${item.category}</p>
         </button>
         `;
 
-        // button.classList = "btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white ";
-        // button.innerHTML = `
-        //     <img class="size-6 md:size-7" src=${item.category_icon}>
-        //     <p>${item.category}</p>
-
-        // `
-        // add btn to category container
         petBtnContainer.append(buttonContainer);
 
     });
-
 }
 
+
+
+// ---------------------------------------------------------------
+// const loadCategoryPet = (id) => {
+//     console.log(id)
+//     const loader = document.getElementById('loader');
+//     loader.classList.remove('hidden');
+
+//     setTimeout(() => {
+
+
+//         displayAllPets();
+
+//     }, 2000);
+// };
+
+// --------------------------------------
 
 loadPetCategories();
 loadAllPets();

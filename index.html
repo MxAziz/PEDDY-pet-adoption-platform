@@ -36,7 +36,7 @@
             <div class="text-center md:w-2/4 md:mx-auto space-y-6 my-7 md:my-10">
                 <h4 class="text-xl font-bold text-[#5f5f5f]">Bringing Families Together ❤️‍🔥</h4>
                 <h1 class="text-5xl font-bold ">Your Path to Adoption Starts Here</h1>
-                <p class="text-[#131313] mb-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.</p>
+                <p class="text-[#131313] mb-5">Peddy is your go-to platform for pet adoption, offering detailed profiles, breed insights, and essential resources. Find the perfect companion and make adoption seamless as you connect with pets in need of loving homes.</p>
                 <button><a class="btn bg-[#0E7A81] hover:bg-[#1b6f75] text-white" href="#scroll">View More</a></button>
             </div>
             <!-- img container -->
@@ -51,7 +51,7 @@
             <!-- adopt text content -->
              <div class="text-center mt-10 md:w-2/4 md:mx-auto space-y-6 mb-12">
                 <h3 class="text-4xl font-bold">Adopt  Your  Best Friend</h3>
-                <p class="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+                <p class="">Adopt your new best friend through Peddy, the trusted platform for pet adoption. Explore diverse pet profiles, learn about breeds, and connect with pets needing loving homes. Start your adoption journey today with ease and confidence.</p>
              </div>
              <!-- adopt pet categories -->
               <div id="categories" class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-9  justify-between mb-8"></div>
@@ -66,16 +66,34 @@
             </div>
 
             <!-- all pets -->
-            <section class="flex gap-4">
+            <section class="flex justify-between gap-4">
                 <!-- loading spinner -->
-                 <div id="loader" class="hidden"><span class="loading loading-bars loading-lg"></span></div>
+                 <div id="loader" class="hidden justify-center items-center "><span class="loading loading-bars loading-lg"></span></div>
                 <!-- all pets card -->
                 <div id="pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 "> </div>
 
-                <div class="w-1/4 border-2 rounded-xl "> </div>
+                <div id="right-box" class="w-1/4 min-h-[350px] justify-end border-2 rounded-xl "> </div>
             </section>
          </section>
         <!-- best deal section ends here -->
+
+        <!-- modal -->
+         <!-- Open the modal using ID.showModal() method -->
+        <button class="btn" onclick="modal.showModal()">open modal</button>
+        <div id="modal-container">
+            <dialog id="modal" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+                </div>
+            </div>
+            </dialog>
+        </div>
 
     </main>
 
