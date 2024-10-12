@@ -68,9 +68,9 @@ const displayAllPets = (pets) => {
             <p class="divider mt-1"></p>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <button class="btn bg-white border border-[#0E7A81]"><img class="size-5" src="https://img.icons8.com/?size=48&id=82788&format=png"></button>
-                <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Adopt</button>
 
+                <button onclick="loadImage(${item.petId})" class="btn bg-white border border-[#0E7A81]"><img class="size-5" src="https://img.icons8.com/?size=48&id=82788&format=png"></button>
+                <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Adopt</button>
                 <button onclick="loadDetails(${item.petId})" class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Details</button>
             </div>
 
@@ -80,18 +80,31 @@ const displayAllPets = (pets) => {
     });
 }
 
+const loadImage = async (info) => {
+    const url = `https://openapi.programming-hero.com/api/peddy/pet/${info}`
+    const res = await fetch(url);
+    const data = await res.json();
+    displayImage(data.petData)
+}
+const displayImage = (allData) => {
+    // console.log(allData);
+    const box = document.getElementById('right-box');
+    const img = document.createElement('div');
+    img.innerHTML = `
+        <img class="rounded-md" src="${allData.image}">
+    `
+    box.append(img);
+}
+
 const loadDetails =async (id) => {
-    // console.log(id)
     const url = `https://openapi.programming-hero.com/api/peddy/pet/${id}`
     const res = await fetch(url);
     const data = await res.json();
     displayDetails(data.petData)
 }
 
-
 const displayDetails = (petsData) => {
     const { breed, date_of_birth, gender, image, pet_details, price, pet_name,vaccinated_status } = petsData;
-    console.log(pet_name)
     const modal = document.getElementById('modal-content');
     modal.innerHTML = `
     <img class="w-full" src="${image}" >
@@ -111,8 +124,6 @@ const displayDetails = (petsData) => {
     `
     document.getElementById('modal').showModal();
 }
-
-
 
 
 // remove all active btn class
@@ -160,8 +171,6 @@ const displayPetCategories = (categories) => {
     });
 }
 
-
-
 // ---------------------------------------------------------------
 // const loadCategoryPet = (id) => {
 //     console.log(id)
@@ -175,7 +184,6 @@ const displayPetCategories = (categories) => {
 
 //     }, 2000);
 // };
-
 // --------------------------------------
 
 loadPetCategories();
