@@ -109,7 +109,6 @@ const displayDetails = (petsData) => {
     <h3 class="text-xl font-semibold">Details Information</h3>
     <p>${pet_details}</p>
     `
-
     document.getElementById('modal').showModal();
 }
 
