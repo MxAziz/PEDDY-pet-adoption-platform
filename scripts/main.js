@@ -80,36 +80,38 @@ const displayAllPets = (pets) => {
     });
 }
 
-const loadDetails = (id) => {
+const loadDetails =async (id) => {
     // console.log(id)
-    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.petData)
-            const { breed, date_of_birth, gender, image, pet_details, price, pet_name } = data.petData;
-            const modal = document.getElementById('modal-container');
-            modal.innerHTML = `
-
-
-            `
-            modal.showModal();
-        })
-        .catch(error => console.log(error));
-
+    const url = `https://openapi.programming-hero.com/api/peddy/pet/${id}`
+    const res = await fetch(url);
+    const data = await res.json();
+    displayDetails(data.petData)
 }
 
 
-// const displayDetails = (petsData) => {
-//     const { breed, date_of_birth, gender, image, pet_details, price, pet_name } = petsData;
-//     console.log(pet_name)
-//     const modal = document.getElementById('modal-container');
+const displayDetails = (petsData) => {
+    const { breed, date_of_birth, gender, image, pet_details, price, pet_name,vaccinated_status } = petsData;
+    console.log(pet_name)
+    const modal = document.getElementById('modal-content');
+    modal.innerHTML = `
+    <img class="w-full" src="${image}" >
+    <h3 class="text-2xl font-bold mt-3">${pet_name}</h3>
+    <div class="grid grid-cols-2" >
+        <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=3795dYcdKYUp&format=png"> Breed: ${breed ? breed : "Not Available"}</p>
+        <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=20095&format=png"> Birth: ${date_of_birth ? date_of_birth : "Not Available"}</p>
+        <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> Gender: ${gender ? gender : "Not Available"}</p>
+        <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=85782&format=png"> Price: ${price ? price : "Not Available"}</p>
+        <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> vaccinated status: ${vaccinated_status ? vaccinated_status : "Not Available"}</p>
+    </div>
 
-// }
+    <p class="divider mt-1"></p>
 
+    <h3 class="text-xl font-semibold">Details Information</h3>
+    <p>${pet_details}</p>
+    `
 
-
-
-
+    document.getElementById('modal').showModal();
+}
 
 
 

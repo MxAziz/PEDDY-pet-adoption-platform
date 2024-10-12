@@ -20,4 +20,8 @@ Peddy is a convenient and user-friendly platform designed to help people find ne
 
 ## Live Demo
 
+<<<<<<< HEAD
 Check out the live version of the Peddy platform: [Deployed Peddy Project]()
+=======
+Check out the live version of the Peddy platform: [Deployed Peddy Project]()
+>>>>>>> 53e3894 (successfully added popup modal)
