@@ -12,21 +12,22 @@ const loadAllPets = () => {
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
         .then(res => res.json())
 
-        .then(data => displayAllPets(data.pets))
-        .catch(error => console.log(error));
-        // .then(data => {
-        //     const loader = document.getElementById('loader');
-        //     loader.classList.remove('hidden');
+        // .then(data => displayAllPets(data.pets))
+        // .catch(error => console.log(error));
 
-        //     setTimeout(() => {
-        //         loader.classList.add('hidden');
-        //         displayAllPets(data.pets);
-        //     }, 2000);
-        // } )
-        // .catch(error => {
-        //     console.log(error)
-        //     loader.classList.add('hidden');
-        // });
+        .then(data => {
+            const loader = document.getElementById('loader');
+            loader.classList.remove('hidden');
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                displayAllPets(data.pets);
+            }, 2000);
+        } )
+        .catch(error => {
+            console.log(error)
+            loader.classList.add('hidden');
+        });
 }
 
 // (1)display
@@ -48,7 +49,7 @@ const displayAllPets = (pets) => {
     }
 
     pets.forEach(item => {
-        console.log(item);
+        // console.log(item);
 
         const {breed, date_of_birth, gender, price } = item;
         const card = document.createElement('div')
@@ -68,9 +69,8 @@ const displayAllPets = (pets) => {
             <p class="divider mt-1"></p>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-
                 <button onclick="loadImage(${item.petId})" class="btn bg-white border border-[#0E7A81]"><img class="size-5" src="https://img.icons8.com/?size=48&id=82788&format=png"></button>
-                <button class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Adopt</button>
+                <button onclick="openModal()" class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Adopt</button>
                 <button onclick="loadDetails(${item.petId})" class="btn bg-white border border-[#0E7A81] text-[#0E7A81] hover:bg-[#1a6a70] hover:text-white">Details</button>
             </div>
 
@@ -79,6 +79,31 @@ const displayAllPets = (pets) => {
         petsContainer.append(card);
     });
 }
+
+
+// countdown modal
+const openModal = () => {
+    document.getElementById('adopt').showModal();
+
+    const modal = document.getElementById('adopt');
+    modal.classList.remove('hidden');
+
+    let countdownValue = 3;
+    let countdown = document.getElementById('countdown');
+
+    let  countdownInterval =  setInterval( function() {
+        countdown.textContent= countdownValue ;
+        countdownValue-- ;
+
+        if (countdownValue < 0) {
+            clearInterval(countdownInterval);
+            modal.classList.add('hidden');
+            modal.close();
+        }
+    } , 1000  );
+
+}
+
 
 const loadImage = async (info) => {
     const url = `https://openapi.programming-hero.com/api/peddy/pet/${info}`
@@ -89,7 +114,7 @@ const loadImage = async (info) => {
 const displayImage = (allData) => {
     // console.log(allData);
     const box = document.getElementById('right-box');
-    const img = document.createElement('div');
+    const img = document.createElement('figure');
     img.innerHTML = `
         <img class="rounded-md" src="${allData.image}">
     `
@@ -114,12 +139,12 @@ const displayDetails = (petsData) => {
         <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=20095&format=png"> Birth: ${date_of_birth ? date_of_birth : "Not Available"}</p>
         <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> Gender: ${gender ? gender : "Not Available"}</p>
         <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=85782&format=png"> Price: ${price ? price : "Not Available"}</p>
-        <p class="flex items-center" ><img class="size-5" src="https://img.icons8.com/?size=64&id=16271&format=png"> vaccinated status: ${vaccinated_status ? vaccinated_status : "Not Available"}</p>
+        <p class="flex items-center" ><img class="size-4" src="https://img.icons8.com/?size=100&id=9565&format=png"> vaccinated status: ${vaccinated_status ? vaccinated_status : "Not Available"}</p>
     </div>
 
     <p class="divider mt-1"></p>
 
-    <h3 class="text-xl font-semibold">Details Information</h3>
+    <h3 class="text-xl font-bold">Details Information</h3>
     <p>${pet_details}</p>
     `
     document.getElementById('modal').showModal();
@@ -129,7 +154,6 @@ const displayDetails = (petsData) => {
 // remove all active btn class
 const removeActiveClass = () => {
     const buttons = document.getElementsByClassName("category-btn");
-    console.log(buttons)
     for (const btn of buttons) {
         btn.classList.remove("active");
     }

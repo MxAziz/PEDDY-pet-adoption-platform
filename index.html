@@ -72,7 +72,8 @@
                 <!-- all pets card -->
                 <div id="pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 "> </div>
 
-                <div id="right-box" class="w-1/4 min-h-[350px] justify-end border-2 rounded-xl space-y-2 p-1 md:p-4"> </div>
+                <div id="right-box" class="w-1/4 min-h-[350px] justify-end border-2 rounded-xl grid grid-cols-1 md:grid-cols-2 auto-rows-min  gap-1 md:gap-4 p-1 md:p-4"> </div>
+
             </section>
          </section>
         <!-- best deal section ends here -->
@@ -96,6 +97,23 @@
             </div>
         </div>
         </dialog>
+
+        <!-- countdown modal -->
+        <!-- You can open the modal using ID.showModal() method -->
+        <button class="btn   hidden" onclick="adopt.showModal()">open modal</button>
+        <dialog id="adopt" class="modal  hidden ">
+            <div class="modal-box w-4/5 md:w-2/5 lg:w-1/4 max-w-5xl">
+
+                <div id="adopt-content" class="text-center flex flex-col justify-center">
+                    <img class="size-24 mx-auto" src="https://img.icons8.com/?size=160&id=8DJddnsX9bIH&format=png" alt="">
+                    <h2 class="font-bold text-lg">Congrats</h2>
+                    <p class="py-4">Adoption Process is Start For your Pet</p>
+                    <h1 id="countdown" class="text-5xl font-bold text-center">3</h1>
+                </div>
+
+            </div>
+        </dialog>
+
 
     </main>
 
