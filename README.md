@@ -20,4 +20,4 @@ Peddy is a convenient and user-friendly platform designed to help people find ne
 
 ## Live Demo
 
-Check out the live version of the Peddy platform: [Deployed Peddy Project]()
+Check out the live version of the Peddy platform: [Deployed Peddy Project](https://peddy-mx.netlify.app/)
