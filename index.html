@@ -65,11 +65,11 @@
                 <button onclick="loadPrice()" class="btn bg-[#0E7A81] hover:bg-[#1a6a70] text-white">Sort by Price</button>
             </div>
 
-            <!-- container -->
+            <!--all pets container -->
              <div class=" ">
 
                 <!-- loading spinner -->
-                 <div id="loader" class="hidden  min-h-[300px] justify-center ">
+                 <div id="loader" class="hidden  min-h-[250px] justify-center ">
                     <span class="loading loading-bars loading-lg mx-auto flex justify-center items-center mt-24"></span>
                 </div>
                 <!-- all pets -->
@@ -84,7 +84,7 @@
          </section>
         <!-- best deal section ends here -->
 
-        <!-- modal -->
+        <!-- details modal -->
        <!-- Open the modal using ID.showModal() method -->
         <button class="btn hidden" onclick="modal.showModal()">open modal</button>
         <dialog id="modal" class="modal modal-bottom sm:modal-middle">
@@ -97,7 +97,7 @@
             <div class="modal-action justify-center ">
             <form method="dialog" >
                 <!-- if there is a button in form, it will close the modal -->
-                <button class="btn btn-wide bg-[#0e798161]">Close</button>
+                <button class="btn btn-wide text-lg font-bold bg-[#0e798161]">Close</button>
             </form>
             </div>
         </div>
@@ -111,14 +111,13 @@
 
                 <div id="adopt-content" class="text-center flex flex-col justify-center">
                     <img class="size-24 mx-auto" src="https://img.icons8.com/?size=160&id=8DJddnsX9bIH&format=png" alt="">
-                    <h2 class="font-bold text-lg">Congrats</h2>
-                    <p class="py-4">Adoption Process is Start For your Pet</p>
+                    <h2 class="font-bold text-2xl">Congrats</h2>
+                    <p class="py-4 font-bold text-gray-500">Adoption Process is Start For your Pet.</p>
                     <h1 id="countdown" class="text-5xl font-bold text-center">3</h1>
                 </div>
 
             </div>
         </dialog>
-
 
     </main>
 
@@ -173,4 +172,3 @@
      <script src="./scripts/main.js"></script>
   </body>
 </html>
-<!-- test -->

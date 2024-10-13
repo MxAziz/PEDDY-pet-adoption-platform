@@ -17,7 +17,18 @@ const loadPrice = () => {
             priceData.sort(function (a, b) {
                 return b.price - a.price;
             });
+
+            const loader = document.getElementById('loader');
+            loader.classList.remove('hidden');
+            const petsBox = document.getElementById('pets-container');
+            petsBox.classList.add('hidden');
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                petsBox.classList.remove('hidden');
                 displayAllPets(priceData);
+            }, 2000);
+
         })
         .catch(error => console.log(error));
 }
@@ -27,15 +38,11 @@ const loadAllPets = () => {
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
         .then(res => res.json())
 
-        // .then(data => displayAllPets(data.pets))
-        // .catch(error => console.log(error));
-
         .then(data => {
             const loader = document.getElementById('loader');
             loader.classList.remove('hidden');
             const rightBox = document.getElementById('right-box');
             rightBox.classList.add('hidden');
-            console.log(data)
 
             setTimeout(() => {
                 loader.classList.add('hidden');
@@ -68,7 +75,6 @@ const displayAllPets = (pets) => {
     }
 
     pets.forEach(item => {
-        // console.log(item);
 
         const {breed, date_of_birth, gender, price } = item;
         const card = document.createElement('div')
@@ -99,7 +105,6 @@ const displayAllPets = (pets) => {
     });
 }
 
-
 // countdown modal
 const openModal = () => {
     document.getElementById('adopt').showModal();
@@ -119,8 +124,8 @@ const openModal = () => {
             modal.classList.add('hidden');
             modal.close();
         }
-    } , 800  );
-
+    }, 800);
+    countdown.textContent = countdownValue;
 }
 
 // like btn functionality
@@ -131,7 +136,6 @@ const loadImage = async (info) => {
     displayImage(data.petData)
 }
 const displayImage = (allData) => {
-    // console.log(allData);
     const box = document.getElementById('right-box');
     const img = document.createElement('figure');
     img.innerHTML = `
@@ -152,8 +156,8 @@ const displayDetails = (petsData) => {
     const { breed, date_of_birth, gender, image, pet_details, price, pet_name,vaccinated_status } = petsData;
     const modal = document.getElementById('modal-content');
     modal.innerHTML = `
-    <img class="w-full" src="${image}" >
-    <h3 class="text-2xl font-bold mt-3">${pet_name}</h3>
+    <img class="w-full rounded-md" src="${image}" >
+    <h3 class="text-3xl font-bold mt-3 mb-2">${pet_name}</h3>
     <div class="grid grid-cols-2" >
         <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=3795dYcdKYUp&format=png"> Breed: ${breed ? breed : "Not Available"}</p>
         <p class="flex items-center"><img class="size-4" src="https://img.icons8.com/?size=48&id=20095&format=png"> Birth: ${date_of_birth ? date_of_birth : "Not Available"}</p>
@@ -164,7 +168,7 @@ const displayDetails = (petsData) => {
 
     <p class="divider mt-1"></p>
 
-    <h3 class="text-xl font-bold">Details Information</h3>
+    <h3 class="text-xl font-bold mb-1">Details Information</h3>
     <p>${pet_details}</p>
     `
     document.getElementById('modal').showModal();
