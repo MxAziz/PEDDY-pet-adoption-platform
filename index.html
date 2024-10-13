@@ -53,7 +53,7 @@
                 <h3 class="text-4xl font-bold">Adopt  Your  Best Friend</h3>
                 <p class="">Adopt your new best friend through Peddy, the trusted platform for pet adoption. Explore diverse pet profiles, learn about breeds, and connect with pets needing loving homes. Start your adoption journey today with ease and confidence.</p>
              </div>
-             <!-- adopt pet categories -->
+             <!-- adopt pet categories btn-->
               <div id="categories" class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-9  justify-between mb-8"></div>
          </section>
         <!-- adopt section ends here -->
@@ -62,19 +62,25 @@
          <section class="">
             <div class="flex justify-between mb-8">
                 <p class="text-2xl font-bold">Best Deal For you</p>
-                <button class="btn bg-[#0E7A81] hover:bg-[#1a6a70] text-white">Sort by Price</button>
+                <button onclick="loadPrice()" class="btn bg-[#0E7A81] hover:bg-[#1a6a70] text-white">Sort by Price</button>
             </div>
 
-            <!-- all pets -->
-            <section class="flex justify-between gap-4">
+            <!-- container -->
+             <div class=" ">
+
                 <!-- loading spinner -->
-                 <div id="loader" class="hidden justify-center items-center "><span class="loading loading-bars loading-lg"></span></div>
-                <!-- all pets card -->
-                <div id="pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 "> </div>
+                 <div id="loader" class="hidden  min-h-[300px] justify-center ">
+                    <span class="loading loading-bars loading-lg mx-auto flex justify-center items-center mt-24"></span>
+                </div>
+                <!-- all pets -->
+                <section id="pets-container" class="flex justify-between gap-4">
+                    <!-- all pets card -->
+                    <div id="pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 "> </div>
+                    <div id="right-box" class="w-1/4 min-h-[350px] justify-end border-2 rounded-xl grid grid-cols-1 md:grid-cols-2 auto-rows-min  gap-1 md:gap-4 p-1 md:p-4"> </div>
+                </section>
 
-                <div id="right-box" class="w-1/4 min-h-[350px] justify-end border-2 rounded-xl grid grid-cols-1 md:grid-cols-2 auto-rows-min  gap-1 md:gap-4 p-1 md:p-4"> </div>
+             </div>
 
-            </section>
          </section>
         <!-- best deal section ends here -->
 
@@ -91,7 +97,6 @@
             <div class="modal-action justify-center ">
             <form method="dialog" >
                 <!-- if there is a button in form, it will close the modal -->
-                <!-- <button class="btn ">Close</button> -->
                 <button class="btn btn-wide bg-[#0e798161]">Close</button>
             </form>
             </div>

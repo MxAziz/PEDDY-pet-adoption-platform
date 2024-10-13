@@ -7,6 +7,21 @@ const loadPetCategories = () => {
         .catch(error => console.log(error));
 }
 
+const loadPrice = () => {
+
+    fetch('https://openapi.programming-hero.com/api/peddy/pets')
+        .then(res => res.json())
+
+        .then(data => {
+            const priceData = (data.pets)
+            priceData.sort(function (a, b) {
+                return b.price - a.price;
+            });
+                displayAllPets(priceData);
+        })
+        .catch(error => console.log(error));
+}
+
 // (1) load all pets
 const loadAllPets = () => {
     fetch('https://openapi.programming-hero.com/api/peddy/pets')
@@ -18,9 +33,13 @@ const loadAllPets = () => {
         .then(data => {
             const loader = document.getElementById('loader');
             loader.classList.remove('hidden');
+            const rightBox = document.getElementById('right-box');
+            rightBox.classList.add('hidden');
+            console.log(data)
 
             setTimeout(() => {
                 loader.classList.add('hidden');
+                rightBox.classList.remove('hidden');
                 displayAllPets(data.pets);
             }, 2000);
         } )
@@ -53,7 +72,7 @@ const displayAllPets = (pets) => {
 
         const {breed, date_of_birth, gender, price } = item;
         const card = document.createElement('div')
-        card.classList = "card card-compact border-2 p-5";
+        card.classList = "card card-compact border-2 p-2 md:p-5";
         card.innerHTML = `
         <figure class="h-[150px]">
             <img
@@ -91,20 +110,20 @@ const openModal = () => {
     let countdownValue = 3;
     let countdown = document.getElementById('countdown');
 
-    let  countdownInterval =  setInterval( function() {
+    let  interval =  setInterval( function() {
         countdown.textContent= countdownValue ;
         countdownValue-- ;
 
         if (countdownValue < 0) {
-            clearInterval(countdownInterval);
+            clearInterval(interval);
             modal.classList.add('hidden');
             modal.close();
         }
-    } , 1000  );
+    } , 800  );
 
 }
 
-
+// like btn functionality
 const loadImage = async (info) => {
     const url = `https://openapi.programming-hero.com/api/peddy/pet/${info}`
     const res = await fetch(url);
@@ -121,6 +140,7 @@ const displayImage = (allData) => {
     box.append(img);
 }
 
+// details btn functionality
 const loadDetails =async (id) => {
     const url = `https://openapi.programming-hero.com/api/peddy/pet/${id}`
     const res = await fetch(url);
@@ -184,7 +204,7 @@ const displayPetCategories = (categories) => {
         const buttonContainer = document.createElement('div');
 
         buttonContainer.innerHTML = `
-        <button onclick="loadCategoryPets('${item.category}')" id="btn-${item.category}" class="category-btn btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white w-full">
+        <button onclick="loadCategoryPets('${item.category}'); loadSpinner();" id="btn-${item.category}" class="category-btn btn btn-lg rounded-xl space-x-2 font-bold border-2 bg-white w-full">
         <img class="size-6 md:size-7" src=${item.category_icon}>
         <p>${item.category}</p>
         </button>
@@ -195,20 +215,19 @@ const displayPetCategories = (categories) => {
     });
 }
 
-// ---------------------------------------------------------------
-// const loadCategoryPet = (id) => {
-//     console.log(id)
-//     const loader = document.getElementById('loader');
-//     loader.classList.remove('hidden');
+const loadSpinner = () => {
+    const loader = document.getElementById('loader');
+    loader.classList.remove('hidden');
+    const pets = document.getElementById('pets-container');
+    pets.classList.add('hidden');
 
-//     setTimeout(() => {
+    setTimeout(() => {
 
+        pets.classList.remove('hidden');
+        loader.classList.add('hidden');
 
-//         displayAllPets();
-
-//     }, 2000);
-// };
-// --------------------------------------
+    }, 2000);
+};
 
 loadPetCategories();
 loadAllPets();
